@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 3000
 const sequelize = require('./src/db/sequelize')
+const cors = require('cors')
 
 //creons nous memes notre propre middleware
 /*app.use((req,res, next)=>{
@@ -16,7 +17,7 @@ Middleware morgan fait la meme chose en moins de lignes de code
 //utilisation du middleware morgan pour l'affichage des messages http dans la console
 app.use(favicon(__dirname + '/favicon.ico'))
    .use(bodyParser.json()) //parser toutes les donnees entrantes au format JSON, afin d'effectuer les POST... depuis insomnia ou postman
-
+   .use(cors())
 //il est possible de combiner plusieurs middlewares en les enchainant grace a la fonction next()
 //morgan gere le next en interne
 
