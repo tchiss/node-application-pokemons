@@ -2,7 +2,7 @@ const express = require('express')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 const app = express()
-const port = process.env.PORT || 3000
+const port = 3000
 const sequelize = require('./src/db/sequelize')
 const cors = require('cors')
 
@@ -25,7 +25,7 @@ app.use(favicon(__dirname + '/favicon.ico'))
 sequelize.initDb() 
 
 app.get('/', (req , res) => {
-    res.json('Hello Heroku 👋')
+    res.json('Hello 👋')
 })
 
 //definitions des poins de terminaison

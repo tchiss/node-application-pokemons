@@ -6,28 +6,17 @@ const bcrypt = require('bcrypt')
   
 let sequelize;
 
-if(process.env.NODE_ENV === 'production')
-{
-  sequelize = new Sequelize('pokedex','root','', {
-    host: 'localhost',
-    dialect: 'mariadb',
-    dialectOptions: {
-      timezone: 'Etc/GMT-2',
-    },
-    logging: true
-  })
-}else{
-  sequelize = new Sequelize('pokedex','root','password', {
-    host: 'mariadb',
-    dialect: 'mariadb',
-    dialectOptions: {
-      timezone: 'Etc/GMT-2',
-    },
-    logging: false
-  })
-}
 
-  
+sequelize = new Sequelize('pokedex','root','', {
+  host: 'localhost',
+  dialect: 'mariadb',
+  dialectOptions: {
+    timezone: 'Etc/GMT-2',
+  },
+  logging: true
+})
+
+
 const Pokemon = PokemonModel(sequelize, DataTypes)
 const User = UserModel(sequelize, DataTypes)
   
