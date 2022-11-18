@@ -1,31 +1,32 @@
-version: "4.12.0"
-services: 
-  node:
-    image: alphonso/docker-express-api
-    container_name: express-api
+version: "3.7"
+services:
+  server:
+    build:
+      context: ./
+    container_name: node-pokemon-api
+    image: node-pokemon-api
     ports:
       - "8000:8000"
     networks:
-      - docker-service
-    depends_on: 
+      - backend
+    links:
       - mariadb
-
+    depends_on:
+      - mariadb
   mariadb:
     image: mariadb:latest
-    container_name: docker-mariadb
+    container_name: mariadb
     ports:
       - "3306:3306"
-    environment: 
+    environment:
       MYSQL_ROOT_PASSWORD: "password"
     networks:
-      - docker-service
-    volumes:
-      - maria-data:/data/db
+      - backend
 
 networks:
-  docker-service:
+  backend:
     driver: bridge
 
 volumes:
-  maria-data:
+  data:
     driver: local

@@ -2,7 +2,7 @@ const express = require('express')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 const app = express()
-const port = 3000
+const port = 8000
 const sequelize = require('./src/db/sequelize')
 const cors = require('cors')
 
@@ -22,7 +22,7 @@ app.use(favicon(__dirname + '/favicon.ico'))
 //morgan gere le next en interne
 
 //initialisation de la db
-sequelize.initDb() 
+// sequelize.initDb()
 
 app.get('/', (req , res) => {
     res.json('Hello 👋')
@@ -48,12 +48,12 @@ app.listen(port,() => console.log(`Le serveur a démarré sur http://localhost:$
 /**
  * Erreurs techniques =>  ce qui est courant dans tous les API REST (acces a la bd , ressource introuvable ...)
  * Erreurs metiers => ce qui est specifique a chaque API
- * 
+ *
  * Gestion des erreurs sequelize
- * 
- *  - Validateurs (integrees et on peut aussi les creer) 
+ *
+ *  - Validateurs (integrees et on peut aussi les creer)
  * Si ca echoue , alors sequelize enverra aucune requete sql a la bd
- * 
+ *
  *  - Contraintes (regles definies directement au niveau de la bd)
  * Que ca ne respecte ou non les contraintes sequelize enverra tjrs une requete sql a la bd
  */
